@@ -1,6 +1,7 @@
-import os
 import json
 import logging
+import os
+
 import pandas as pd
 
 logger = logging.getLogger(__name__)
@@ -45,7 +46,7 @@ class AddressStoreController():
 
         return self.store_df
 
-    def clear_address(self):
+    def clear_database(self):
         """
         purge addresses in feather file
         """

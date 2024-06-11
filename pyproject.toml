@@ -1,8 +1,18 @@
 [tool.ruff]
-# Read more here https://beta.ruff.rs/docs/rules/
-# By default, Ruff enables Flake8's E and F rules
-# Pyflakes - F, pycodestyle - E, W
-# flake8-builtins - A
-# Pylint - PLC, PLE, PLW
-# isort - I
-select = ['E', 'F', 'W', 'A', 'PLC', 'PLE', 'PLW', 'I']
+
+[tool.ruff.lint]
+ignore = ["E501"]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C4", # Ruff's docstring conventions
+    "NPY", # Ruff's NumPy conventions
+    "PD", # Ruff's Pandas conventions
+    "SIM", # Ruff's simplifications
+    "TCH", # Ruff's type checking
+]
+
+[tool.ruff.format]
+docstring-code-line-length = 300

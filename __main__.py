@@ -1,7 +1,9 @@
-import dspy
-import pickle
 import json
+import pickle
 
+import dspy
+
+from src.address_parser import AddressParser
 from src.address_parser_signature import AddressParserSignature
 from src.address_store_controller import AddressStoreController
 from src.custom_lm_client import CustomLMClient
@@ -26,9 +28,11 @@ def main():
         json_structure_definition = f_1.read()
         json_structure = json.load(f_2)
 
-    response_0 = address_parser(
+    address_parser = AddressParser()
+    response_0 = address_parser.forward(
         raw_address_list=[
-            "Room2301-3 23 / F Wayson Comm Bldg No. 28 Connaught Rd W H K, Western District, Hong Kong",
+            "Room2301-3 23 / F Wayson Comm Bldg No. 28 Connaught Rd W HK, Western District, Hong Kong",
+            "HSE NO 19, TAI WAI NEW VILLAGE, TAI WAI NT",
             "Flat B, 12/F, Begonia Mansion, Harbour View Gardens (East), Taikoo Shing, 8 Taikoo Wan Road, Taikoo, Eastern District, Hong Kong Island, Hong Kong SAR, China"
         ],
         #parsing_constaints=parsing_constaints,
