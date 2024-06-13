@@ -5,7 +5,7 @@ import os
 import pandas as pd
 
 
-class AddressStoreController():
+class AddressStoreController:
     """
     address controller
     """
@@ -30,12 +30,12 @@ class AddressStoreController():
 
     def insert_address(self, json_row):
         """
-        convert into a dataframe and append into existing loaded dataframe and save 
+        convert into a dataframe and append into existing loaded dataframe and save
         """
 
         logging.info("shape before update: %s", str(self.store_df.shape))
         row_df = pd.json_normalize(json_row)
-        #row_df = pd.DataFrame([json_row])
+        # row_df = pd.DataFrame([json_row])
         self.store_df = pd.concat([self.store_df, row_df], ignore_index=True)
 
         logging.info("shape after update: %s", str(self.store_df.shape))

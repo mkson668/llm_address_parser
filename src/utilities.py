@@ -16,14 +16,15 @@ def stringify_json(data):
 
 def clean_json_string(json_string):
     """quick json removal"""
-    pattern = r'^```json\s*(.*?)\s*```$'
+    pattern = r"^```json\s*(.*?)\s*```$"
     cleaned_string = ""
     try:
-        cleaned_string = re.sub(pattern, r'\1', json_string, flags=re.DOTALL)
+        cleaned_string = re.sub(pattern, r"\1", json_string, flags=re.DOTALL)
     except json.JSONDecodeError as e:
         logger.warning("parsing error detected: %s", str(e))
         cleaned_string = json_string
     return cleaned_string.strip()
+
 
 def parse_api_return_json_string(json_string):
     """

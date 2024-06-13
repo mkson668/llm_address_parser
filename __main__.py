@@ -1,6 +1,6 @@
+import functools
 import json
 import pickle
-import functools
 
 import dspy
 from dspy.primitives.assertions import assert_transform_module, backtrack_handler
@@ -36,7 +36,6 @@ def main():
     response_0 = address_parser(
         raw_address_list=[
             "Room2301-3 23 / F Wayson Comm Bldg No. 28 Connaught Rd W HK, Western District, Hong Kong",
-            "HSE NO 19, TAI WAI NEW VILLAGE, TAI WAI NT",
             "Flat B, 12/F, Begonia Mansion, Harbour View Gardens (East), Taikoo Shing, 8 Taikoo Wan Road, Taikoo, Eastern District, Hong Kong Island, Hong Kong SAR, China"
         ],
         #parsing_constaints=parsing_constaints,
