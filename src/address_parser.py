@@ -6,6 +6,9 @@ from src.address_parser_signature import AddressParserSignature
 
 
 class AddressParser(dspy.Module):
+    """
+    putting things together to form the module
+    """
     def __init__(self):
         self.generate_answer = dspy.ChainOfThought(AddressParserSignature)
 
@@ -19,5 +22,8 @@ class AddressParser(dspy.Module):
             json_structure=json_structure
             )
         print(type(pred.json_addresses))
-        dspy.Suggest(isinstance(pred.json_addresses, list), "the parsed answer should be a list")
+        dspy.Suggest(
+            result=isinstance(pred.json_addresses, str), 
+            msg="the parsed answer should be a JSON string"
+            )
         return pred
