@@ -12,6 +12,7 @@ from src.address_store_controller import AddressStoreController
 from src.custom_lm_client import CustomLMClient
 from src.utilities import load_stringified_json
 
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 openai = CustomLMClient(model="openai/gpt-4o")
@@ -49,6 +50,10 @@ def main():
     with open('addr_list.pkl', 'wb') as file:
         # Dump the list to the file
         pickle.dump(json_addr_list, file)
+    
+    # with open('addr_list.pkl', 'rb') as file:
+    #     # Dump the list to the file
+    #     json_addr_list = pickle.load(file)
 
     parsed_json_addr_list = []
     for addr in json_addr_list:
