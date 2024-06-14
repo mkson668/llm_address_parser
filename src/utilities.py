@@ -37,5 +37,17 @@ def parse_api_return_json_string(json_string):
         data = json.loads(modified_str)
         return data
     except json.JSONDecodeError as e:
-        print(f"Failed to parse JSON: {e} with format {modified_str}")
+        logger.error(f"Failed to parse JSON: {e} with format {modified_str}")
+        sys.exit(1)
+
+def load_stringified_json(json_string):
+    """
+    jsonify string based json and catch exceptions for formatting
+    """
+
+    try:
+        ret_json = json.loads(json_string)
+        return ret_json
+    except json.JSONDecodeError as e:
+        logger.error(f"json load failed: {e} with format {json_string}")
         sys.exit(1)

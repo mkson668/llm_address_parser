@@ -4,6 +4,7 @@ import os
 
 import pandas as pd
 
+logger = logging.getLogger(__name__)
 
 class AddressStoreController:
     """
@@ -19,7 +20,7 @@ class AddressStoreController:
         else:
             tmp_df = pd.json_normalize(json_obj)
             self.store_df = pd.DataFrame(columns=list(tmp_df))
-            print("json file not found. Creating a new one.")
+            logger.warning("json file not found. Creating a new one.")
             self.store_df.to_feather(self.datafile_path)
 
     def get_all_address(self):
@@ -33,13 +34,13 @@ class AddressStoreController:
         convert into a dataframe and append into existing loaded dataframe and save
         """
 
-        logging.info("shape before update: %s", str(self.store_df.shape))
+        logger.info("shape before update: %s", str(self.store_df.shape))
         row_df = pd.json_normalize(json_row)
         # row_df = pd.DataFrame([json_row])
         self.store_df = pd.concat([self.store_df, row_df], ignore_index=True)
 
-        logging.info("shape after update: %s", str(self.store_df.shape))
-        logging.info("saving updated dataframe...")
+        logger.info("shape after update: %s", str(self.store_df.shape))
+        logger.info("saving updated dataframe...")
         self.store_df.to_feather(self.datafile_path)
 
         return self.store_df
@@ -48,8 +49,8 @@ class AddressStoreController:
         """
         purge addresses in feather file
         """
-        logging.warning("purging all addresses records: %s", str(self.store_df.shape))
+        logger.warning("purging all addresses records: %s", str(self.store_df.shape))
         self.store_df.drop(self.store_df.index, inplace=True)
 
-        logging.info("saving empty dataframe...")
+        logger.info("saving empty dataframe...")
         self.store_df.to_feather(self.datafile_path)

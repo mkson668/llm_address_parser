@@ -1,7 +1,10 @@
 [tool.ruff]
 
 [tool.ruff.lint]
-ignore = ["E501"]
+ignore = [
+    "E501", 
+    "W0231"
+]
 select = [
     "E",  # pycodestyle errors
     "W",  # pycodestyle warnings

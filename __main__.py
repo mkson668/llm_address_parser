@@ -1,6 +1,7 @@
 import functools
 import json
 import pickle
+import logging
 
 import dspy
 from dspy.primitives.assertions import assert_transform_module, backtrack_handler
@@ -9,7 +10,9 @@ from src.address_parser import AddressParser
 from src.address_parser_signature import AddressParserSignature
 from src.address_store_controller import AddressStoreController
 from src.custom_lm_client import CustomLMClient
-from src.utilities import parse_api_return_json_string
+from src.utilities import load_stringified_json
+
+logger = logging.getLogger(__name__)
 
 openai = CustomLMClient(model="openai/gpt-4o")
 dspy.configure(lm=openai)
@@ -21,8 +24,8 @@ def main():
 
     with (
         #open("./resources/parse_constraints.txt", encoding="utf-8") as f_0,
-        open("./resources/parse_format_def.txt", encoding="utf-8") as f_1,
-        open("./resources/parse_format.json", encoding="utf-8") as f_2,
+        open("./resources/parse_format_custom_def.txt", encoding="utf-8") as f_1,
+        open("./resources/parse_format_custom.json", encoding="utf-8") as f_2,
     ):
         #parsing_constaints = f_0.read()
         json_structure_definition = f_1.read()
@@ -33,29 +36,30 @@ def main():
     address_parser = assert_transform_module(AddressParser(),functools.partial(backtrack_handler, max_backtracks=1))
 
     # address_parser = AddressParser()
-    response_0 = address_parser(
+    json_addr_list = address_parser(
         raw_address_list=[
-            "Room2301-3 23 / F Wayson Comm Bldg No. 28 Connaught Rd W HK, Western District, Hong Kong",
-            "Flat B, 12/F, Begonia Mansion, Harbour View Gardens (East), Taikoo Shing, 8 Taikoo Wan Road, Taikoo, Eastern District, Hong Kong Island, Hong Kong SAR, China"
+            "Flat B, 12/F, Begonia Mansion, Harbour View Gardens (East), Taikoo Shing, 8 Taikoo Wan Road, Taikoo, Eastern District, Hong Kong Island, Hong Kong SAR, China",
+            "NO.3, TAK WING STREET, CITY ONE, SHATIN"
         ],
         #parsing_constaints=parsing_constaints,
         json_structure_definition=json_structure_definition,
         json_structure=json_structure,
     )
 
-    json_addr_list = response_0.json_addresses
     with open('addr_list.pkl', 'wb') as file:
         # Dump the list to the file
         pickle.dump(json_addr_list, file)
 
     parsed_json_addr_list = []
-    for addr in parse_api_return_json_string(json_addr_list):
-        parsed_json_addr_list.append(addr)
+    for addr in json_addr_list:
+        parsed_json_addr_list.append(load_stringified_json(addr))
 
     if len(parsed_json_addr_list) > 0:
-        storage_controller = AddressStoreController(parsed_json_addr_list[0])
+        storage_controller = AddressStoreController(parsed_json_addr_list[0]["addresses"]["Eng3dAddress"])
         for p_addr in parsed_json_addr_list:
-            storage_controller.insert_address(p_addr)
+            storage_controller.insert_address(p_addr["addresses"]["Eng3dAddress"])
+    else:
+        logger.warning("completions with size 0 was detected exiting...")
 
 if __name__ == "__main__":
     main()

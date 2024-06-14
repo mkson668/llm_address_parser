@@ -27,9 +27,14 @@ class AddressParser(dspy.Module):
             json_structure_definition=json_structure_definition,
             json_structure=json_structure,
         )
-        print(type(pred.json_addresses))
-        dspy.Suggest(
-            result=isinstance(pred.json_addresses, str),
-            msg="the parsed answer should be a JSON string",
-        )
-        return pred
+
+        completion_arr = []
+
+        for completion in pred.completions:
+            print(type(completion["json_addresses"]))
+            dspy.Suggest(
+                result=isinstance(completion["json_addresses"], str),
+                msg="the parsed answer should be a JSON string",
+            )
+            completion_arr.append(completion["json_addresses"])
+        return completion_arr
