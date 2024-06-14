@@ -37,6 +37,14 @@ def main():
     address_parser = assert_transform_module(AddressParser(),functools.partial(backtrack_handler, max_backtracks=1))
 
     # address_parser = AddressParser()
+    # 
+    # 2 addresses = {'prompt_tokens': 2215, 'completion_tokens': 159, 'total_tokens': 2374}
+    # prompt cost (gpt-4o) per token 0.000005/ completion cost per token 0.000015 USD!!!
+    # one address ~ 80 tokens
+    # max prompt + completion context 128000 tokens
+    # max completion context 4096 tokens
+    # leaving 10% headroom for completion tokens ~ 46 addresses per run
+
     json_addr_list = address_parser(
         raw_address_list=[
             "Flat B, 12/F, Begonia Mansion, Harbour View Gardens (East), Taikoo Shing, 8 Taikoo Wan Road, Taikoo, Eastern District, Hong Kong Island, Hong Kong SAR, China",
