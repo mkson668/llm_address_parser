@@ -63,7 +63,7 @@ The only configuration option available to users is the `MAX_BATCH_SIZE` global 
 
 ### Output File
 - The output file will be named `address.feather` and saved in the `./output` folder.
-- The file will contain the parsed addresses with the following attibutes:
+- The file will contain the parsed addresses dataframe with the following columns:
     - FloorNum: The floor number of the building.
     - FloorDescription: A description or additional details about the floor.
     - UnitDescriptor: The type or descriptor for the unit (e.g., Flat, Apartment, Suite).
