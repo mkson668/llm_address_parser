@@ -163,7 +163,7 @@ class CustomLMClient(LM):
                                                 "poBox": {"type": "string"},
                                                 "attentionLine": {"type": "string"},
                                                 "careOfLine": {"type": "string"},
-                                                "confidenceScore": {"type": "string"},
+                                                "confidenceScore": {"type": "number"},
                                                 "issues": {"type": "string"},
                                             },
                                         }

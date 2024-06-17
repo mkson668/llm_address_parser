@@ -6,6 +6,7 @@ import pandas as pd
 
 logger = logging.getLogger(__name__)
 
+
 class AddressStoreController:
     """
     address controller
@@ -38,7 +39,7 @@ class AddressStoreController:
         row_df = pd.json_normalize(json_row)
         # row_df = pd.DataFrame([json_row])
         self.store_df = pd.concat([self.store_df, row_df], ignore_index=True)
-        self.store_df = self.store_df.replace(r'^\s*$', pd.NA, regex=True)
+        self.store_df = self.store_df.replace(r"^\s*$", pd.NA, regex=True)
 
         logger.info("shape after update: %s", str(self.store_df.shape))
         logger.info("saving updated dataframe...")

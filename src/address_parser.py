@@ -16,6 +16,7 @@ class AddressParser(dspy.Module):
     def forward(
         self,
         raw_address_list: List[str],
+        parsing_constraints: str,
         json_structure_definition: str,
         json_structure: str,
     ):
@@ -24,6 +25,7 @@ class AddressParser(dspy.Module):
         """
         pred = self.generate_answer(
             raw_address_list=raw_address_list,
+            parsing_constraints=parsing_constraints,
             json_structure_definition=json_structure_definition,
             json_structure=json_structure,
         )

@@ -2,6 +2,9 @@ import json
 import logging
 import re
 import sys
+import os
+
+import pandas as pd
 
 logger = logging.getLogger(__name__)
 
@@ -37,8 +40,9 @@ def parse_api_return_json_string(json_string):
         data = json.loads(modified_str)
         return data
     except json.JSONDecodeError as e:
-        logger.error(f"Failed to parse JSON: {e} with format {modified_str}")
+        logger.error("Failed to parse JSON: %s with format %s", e, modified_str)
         sys.exit(1)
+
 
 def load_stringified_json(json_string):
     """
@@ -51,3 +55,24 @@ def load_stringified_json(json_string):
     except json.JSONDecodeError as e:
         logger.error(f"json load failed: {e} with format {json_string}")
         sys.exit(1)
+
+
+def read_data(file_path):
+    """
+    read file
+    """
+    _, ext = os.path.splitext(file_path)
+    ext = ext.lower()
+
+    if ext == ".csv":
+        data = pd.read_csv(file_path)
+    elif ext == ".pkl":
+        data = pd.read_pickle(file_path)
+    elif ext == ".xlsx" or ext == ".xls":
+        data = pd.read_excel(file_path)
+    elif ext == ".feather":
+        data = pd.read_feather(file_path)
+    else:
+        raise ValueError(f"Unsupported file extension: {ext}")
+
+    return data
