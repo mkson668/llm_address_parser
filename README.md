@@ -163,4 +163,4 @@ Here is an example output for the address `Flat B, 12/F, Begonia Mansion,Harbour
 ## Contributors
 
 ## License
-This project is licensed under the MIT License.
+Licensed under the Apache License, Version 2.0 (the "License").
