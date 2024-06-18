@@ -40,12 +40,13 @@ def main():
     address_parser = assert_transform_module(AddressParser(),functools.partial(backtrack_handler, max_backtracks=1))
 
     # address_parser = AddressParser()
-    # 2 addresses = {'prompt_tokens': 2215, 'completion_tokens': 159, 'total_tokens': 2374}
+    # direct extract from api call
+    # 2 addresses = {'prompt_tokens': 2169, 'completion_tokens': 219, 'total_tokens': 2388}
     # prompt cost (gpt-4o) per token 0.000005/ completion cost per token 0.000015 USD!!!
-    # one address ~ 80 tokens
+    # one address ~ 110 tokens
     # max prompt + completion context 128000 tokens
     # max completion context 4096 tokens
-    # leaving 10% headroom for completion tokens ~ 46 addresses per run
+
     address_full_df = pd.read_excel("./input/address_full.xlsx")
 
     assert len(address_full_df) > 0, logging.error("the # raw addresses must be > 0")
@@ -53,7 +54,8 @@ def main():
     for start in range(0, len(address_full_df), MAX_BATCH_SIZE):
         curr_addr_lst = []
         end = start + MAX_BATCH_SIZE
-        for addr in address_full_df.iloc[start:end]["raw_address"]:
+        curr_addr_df = address_full_df.iloc[start:end]
+        for addr in curr_addr_df["raw_address"]:
             curr_addr_lst.append(addr)
 
         json_addr_list = address_parser(
@@ -76,9 +78,12 @@ def main():
 
         assert len(parsed_json_addr_list) > 0, logging.warning("parsed result from stringified api json must be > 0!")
 
-        storage_controller = AddressStoreController(parsed_json_addr_list[0]["addresses"]["Eng3dAddress"])
-        for p_addr in parsed_json_addr_list:
-            storage_controller.insert_address(p_addr["addresses"]["Eng3dAddress"])
+        storage_controller = AddressStoreController(
+            parsed_json_addr_list[0]["addresses"]["Eng3dAddress"],
+            ["raw_address"]
+        )
+        for p_addr, r_addr in zip(parsed_json_addr_list, list(curr_addr_df["raw_address"])):
+            storage_controller.insert_address(p_addr["addresses"]["Eng3dAddress"], r_addr)
 
 if __name__ == "__main__":
     main()
