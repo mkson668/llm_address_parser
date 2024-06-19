@@ -13,7 +13,7 @@ class AddressStoreController:
     address controlle
     """
 
-    def __init__(self, json_obj=None, ref_cols:List[str]=[]):
+    def __init__(self, json_obj=None, ref_cols:List[str]=None):
         with open("secrets.json", encoding="utf-8") as f:
             secrets = json.load(f)
             self.datafile_path = secrets["DATAFILE_PATH"]
