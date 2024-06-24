@@ -1,0 +1,33 @@
+{
+    "EngFloor": {"FloorNum": "", "FloorDescription": ""},
+    "EngUnit": {"UnitDescriptor": "", "UnitNo": "", "UnitPortion": ""},
+    "EngBlock": {"BlockDescriptor": "", "BlockNo": ""},
+    "BuildingName": "",
+    "EngEstate": {"EstateName": ""},
+    "EngPhase": {"PhaseName": "", "PhaseNo": ""},
+    "EngVillage": {
+        "LocationName": "",
+        "VillageName": "",
+        "BuildingNoFrom": "",
+        "BuildingNoTo": ""
+    },
+    "EngStreet": {
+        "LocationName": "",
+        "StreetName": "",
+        "BuildingNoFrom": "",
+        "BuildingNoTo": ""
+    },
+    "EngDistrict": {"DcDistrict": "", "Region": ""},
+    "county": "",
+    "city": "",
+    "state": "",
+    "province": "",
+    "postalCode": "",
+    "country": "",
+    "countryCode": "",
+    "poBox": "",
+    "attentionLine": "",
+    "careOfLine": "",
+    "confidenceScore": "",
+    "issues": ""
+}

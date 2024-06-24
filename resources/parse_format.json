@@ -1,0 +1,99 @@
+{
+    "id": "",
+    "original": {
+        "line_1": "",
+        "line_2": "",
+        "line_3": "",
+        "line_4": ""
+    },
+    "parsed": {
+        "units": [
+            {
+                "identifier": "",
+                "descriptor": ""
+            }
+        ],
+        "floor": {
+            "identifier": "",
+            "descriptor": ""
+        },
+        "building": {
+            "name": "",
+            "number": "",
+            "descriptor": ""
+        },
+        "phase": {
+            "name": "",
+            "number": "",
+            "descriptor": ""
+        },
+        "estate": {
+            "name": "",
+            "number": "",
+            "descriptor": ""
+        },
+        "street": {
+            "number": "",
+            "name": "",
+            "descriptor": ""
+        },
+        "area": {
+            "subdistrict": "",
+            "district": "",
+            "county": "",
+            "locality": "",
+            "admin_area_l2": "",
+            "admin_area_l1": "",
+            "administrative_region": "",
+            "country": ""
+        },
+        "parcel": {
+            "lots": [
+                {
+                    "lot_no": "",
+                    "dd": ""
+                }
+            ]
+        },
+        "mailing_info": {
+            "care_of": "",
+            "po_box": ""
+        },
+        "postcode": ""
+    },
+    "issues": {
+        "predefined": {
+            "errors": [
+                {
+                    "code": "",
+                    "description": ""
+                }
+            ],
+            "warnings": [
+                {
+                    "code": "",
+                    "description": ""
+                }
+            ]
+        },
+        "custom": {
+            "errors": [
+                {
+                    "code": "",
+                    "description": ""
+                }
+            ],
+            "warnings": [
+                {
+                    "code": "",
+                    "description": ""
+                }
+            ]
+        }
+    },
+    "confidence": {
+        "score": 0.0,
+        "reasons": []
+    },
+    "remarks": []
+}

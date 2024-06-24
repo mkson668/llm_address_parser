@@ -1,0 +1,41 @@
+Descriptions:
+
+- The 'id' field should contain a unique identifier for the address, starting at 1 and incrementing by 1 for each new address. Output the integer as a string.
+- The 'original' field should contain an object with four properties: 'line_1', 'line_2', 'line_3', and 'line_4'. Each property represents a line of the original address. If an address has fewer than four lines, the remaining line properties should be empty strings.
+- The 'units' field should be an array containing objects that represent the identifier and descriptor for each unit, such as 'Flat B'. If there are multiple units, include multiple objects in the array. If there is no unit information, output an empty array.
+- The 'floor' field should contain the identifier and descriptor for the floor, such as '12/F'. 
+- The 'building' field should contain the name, number, and descriptor for the building, such as 'Begonia Mansion'.
+- The 'phase' field should contain the name, number, and descriptor for the phase, such as 'Harbour View Gardens (East)'.
+- The 'estate' field should contain the name, number, and descriptor for the estate, such as 'Taikoo Shing'.
+- The 'street' field should contain the number, name, and descriptor for the street, such as '8 Taikoo Wan Road'.
+- The 'area' field should contain the following subfields, representing the administrative hierarchy from the most local to the national level:
+  - 'subdistrict': The smallest administrative division, such as a neighbourhood or suburb.
+  - 'district': A larger division that typically includes multiple subdistricts.
+  - 'county': A larger division that includes multiple districts. Not used in all countries.
+  - 'locality': A populated place, like a city, town, or village.
+  - 'admin_area_l2': An administrative division between the county and admin_area_l1 levels, if applicable.
+  - 'admin_area_l1': The largest subnational administrative division, such as a state, province, or prefecture.
+  - 'administrative_region': A top-level administrative division that does not fit into the standard hierarchy, such as a Special Administrative Region (SAR) or autonomous region.
+  - 'country': The country name.
+- The 'parcel' field should contain the lot number and dd, such as 'Lot 555-559, DD 73'.
+- The 'mailing_info' field should contain the care of and PO box information, such as 'C/O MS LO, PO Box 431'.
+- The 'postcode' field should contain the postcode.
+- The 'issues' field should contain two subfields:
+  - 'predefined': An object containing two arrays:
+    - 'errors': An array of objects representing predefined error codes and their descriptions. Use the following codes:
+      - "E001": Missing or unrecognised street name
+      - "E002": Missing or unrecognised building name or number 
+      - "E003": Missing or unrecognised estate or phase name
+      - "E004": Invalid or inconsistent address hierarchy (e.g., a building without a street)
+      - "E005": Address contains unsupported or invalid characters
+    - 'warnings': An array of objects representing predefined warning codes and their descriptions. Use the following codes:
+      - "W001": Missing or unrecognised floor or unit number
+      - "W002": Missing or unrecognised district or area
+      - "W003": Ambiguous or conflicting address components (e.g., multiple buildings with the same name)
+      - "W004": Address contains redundant or duplicate information
+      - "W005": Unusual or non-standard address format
+  - 'custom': An object containing two arrays:  
+    - 'errors': An array of objects representing custom error codes and their descriptions, for issues not covered by the predefined codes.
+    - 'warnings': An array of objects representing custom warning codes and their descriptions, for issues not covered by the predefined codes.
+- The 'confidence' field should contain a 'score' (a float between 0.0 to 1.0) indicating confidence in the accuracy of the entire analysed address and 'reasons,' an array of strings explaining factors influencing the confidence score.
+- The 'remarks' field should be an array of strings, where each string provides additional, unstructured context or notes about the analysed address that do not fit into any of the other fields.

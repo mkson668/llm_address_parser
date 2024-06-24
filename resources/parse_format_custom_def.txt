@@ -1,0 +1,52 @@
+
+1. EngFloor: Floor number and related information of the address concerned.
+     - `EngFloor.FloorNum`: Floor number.
+     - `EngFloor.FloorDescription`: Floor description  (e.g., "CONCOURSE", "UPPER G/F", "ROOF", "PODIUM").
+
+2. EngUnit: Unit number and related information of the address concerned.
+     - `EngUnit.UnitDescriptor`: Unit descriptor  (e.g., "FLAT", "SHOP").
+     - `EngUnit.UnitNo`: Unit number, including any non-numeric parts (e.g., "A1", "3C").
+     - `EngUnit.UnitPortion`: Unit portion.
+
+3. EngBlock
+   - `EngBlock.BlockDescriptor`: Block descriptor  (e.g., "Building", "House", "Block", "BLK").
+   - `EngBlock.BlockNo`: Block number  or numeric values (e.g., "1", "A", "EAST").
+
+4. BuildingName
+   - `BuildingName`: Building name.
+
+5. EngEstate
+   - `EngEstate.EstateName`: Estate name of the address.
+
+6. EngPhase
+   - `EngPhase.PhaseName`: Phase name of the address concerned.
+   - `EngPhase.PhaseNo`: Phase number of the address concerned.
+
+7. EngVillage
+   - `EngVillage.LocationName`: Place name of the address.
+   - `EngVillage.VillageName`: Village name of the address.
+   - `EngVillage.BuildingNoFrom`: Starting building number of the English village address, or the building number when a single building number value is concerned, non-numeric part is included (e.g., "12A" in "12A-14B", and "3B" in "3B/3C").
+   - `EngVillage.BuildingNoTo`: Ending building number of the English village address, non-numeric part is included (e.g., "14B" in "12A-14B", and "3C" in "3B/3C").
+
+8. EngStreet
+   - `EngStreet.LocationName`: Place name of the address.
+   - `EngStreet.StreetName`: Street name of the address.
+   - `EngStreet.BuildingNoFrom`: Starting building number of the English street address, or the building number when a single building number value is concerned, non-numeric part is included (e.g., "12A" in "12A-14B", and "3B" in "3B/3C").
+   - `EngStreet.BuildingNoTo`: Ending building number of the English street address, non-numeric part is included (e.g., "14B" in "12A-14B", and "3C" in "3B/3C").
+
+9. EngDistrict
+   - `EngDistrict.DcDistrict`: District Council where the address concerned locates, below are some possible values:
+        - Central & Western District
+        - Eastern District
+        - Islands District
+        - Kowloon City District
+        - Kwun Tong District
+        - Tsuen Wan District
+        - Tuen Mun District
+        - Wan Chai District
+
+   - `EngDistrict.Region`: Region that the address references (HK - Hong Kong, KLN - Kowloon, NT - New Territories).
+
+10. confidenceScore: a number between 0.0 to 1.0 indicating confidence in the accuracy parsed address.
+
+11. issues: a string that lists any issues encountered, missing information during the parsing process.

@@ -1,0 +1,50 @@
+Please note that the majority of the addresses you will be analysing will be from Hong Kong, but the system should also be able to handle addresses from other countries. When analysing Hong Kong addresses, pay special attention to the following common features and conventions:
+1. District and area names, such as "Kowloon City," "Wan Chai," or "Tsim Sha Tsui."
+2. Estate and phase names, such as "Taikoo Shing" or "Mei Foo Sun Chuen." Estate names often appear before building names and numbers, and they typically represent larger residential or commercial developments. 
+3. Building names and numbers, such as "Harbour Centre" or "Tower 2." Building names and numbers refer to specific structures within an estate.
+4. Floor and unit numbers, which may be presented in a combined format, such as "12/F" for "12th Floor" or "5A" for "Unit 5A." Carefully analyse the address to correctly separate the floor and unit information.
+5. Abbreviations, some of which BUT NOT LIMITED TO the following:
+    - "rm", "Room" 
+    - "Blk", "Block"
+    - "IND", "industrial"
+    - "int'l", "international"
+    - "G.P.O.", "General Post Office"
+    - "APT", "apartment"
+    - "CTR", "Center"
+    - "DD", "design development"
+    - "comm'l": "commercial"
+    - "EDF": "Edificio"
+    - "EST": "estate"
+    - "FTY": "factory"
+    - "GDN": "garden"
+    - "mans": "mansion"
+    - "mgt": "managment"
+    - "P.R.C.": "peoples republic of china"
+    - "pref": "prefecture"
+    - "sq": "square"
+    - "bldg": "building"
+    - "flt": "flat"
+    - "twr": "tower"
+    - "dist": "district"
+    - "no": "number"
+    - "pc": "postal code" 
+6. Directional Abbreviations such as "N", "E", "W", "S"
+7. Regions for HK based addresses should only be one of the following (infer if necessary):
+    - "HK": "Hong Kong"
+    - "KLN": "Kowloon"
+    - "NT": "New Territories"
+
+When analysing addressses, be sure to:
+    - Pay attention to the order and formatting of the address components to accurately determine their roles (e.g., in "9G, Tower 1," "9" is the floor and "G" is the unit).
+    - Distinguish between estate and building names. If an address includes both an estate name and a building name or number, make sure to assign them to the correct fields in the analysed output.
+    - Always output a value for "confidenceScore" 
+    - Pay attention to the the postal code structure as each country has a different encoding
+    - Always produce a reasoning for "issues", if no issue was encountered during parsing write "none"
+    - Do not attempt to force duplicated address components into the parsed result
+
+Some additional things to consider are:
+    - some addresses do not have delimiters such as spaces or punctuations
+    - some addresses maybe be alphabetical but in foreign languages such as Portuguese, Mandarin, Spanish, Japanese, French etc.
+
+For addresses outside of Hong Kong, the analyser should still attempt to identify and structure the key components, such as street name, building name or number, and postcode, even if they do not follow Hong Kong-specific conventions.
+When analysing ambiguous or incomplete addresses, take a conservative approach. Do not make excessive assumptions or inferences about missing or unclear information. Focus on extracting and structuring the address components that are explicitly provided. If an address component is missing or cannot be confidently determined, leave the corresponding field as an empty string.
